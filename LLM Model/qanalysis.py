@@ -66,8 +66,12 @@ Your output must be in JSON format with two keys:
 - "category": The main category
 - "explanation": A brief explanation (2-3 sentences) of why this classification was chosen
 
+- Equivalence
 
-
+- Complementarity
+  
+- Independence
+  
 Now, based on these rules, analyze the following texts:
 
 Summary: "{summary_text}"
