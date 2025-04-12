@@ -4,6 +4,7 @@
 
 # Virtual Environment
 venv/
+google/
 env/
 .venv/
 .ENV/

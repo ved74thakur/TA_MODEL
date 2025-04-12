@@ -24,11 +24,11 @@ def process_batch(articles: List[Dict], start_idx: int, batch_size = int) -> Lis
 
 def main():
 
-    #loading data
+    
     with open('sumcap_dataset.json', 'r') as f:
         articles = json.load(f)
     
-    articles = articles[:200]
+    
     batch_size = 200
     all_results = []
 

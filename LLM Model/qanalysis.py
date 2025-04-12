@@ -1,10 +1,12 @@
 
-from google import genai
+
 from dotenv import load_dotenv
 import json
 import csv
+
+from google import genai
 import os
-from rate_limiter import RateLimiter
+
 
 load_dotenv()
 api_key = os.getenv('GEMINI_API_KEY')
@@ -62,16 +64,36 @@ def classify_relationship(summary_text, caption_text):
    - *Meta-Information*
      - Rule: One text reveals extra, contextual information (e.g., production context) about the other.
 
-Your output must be in JSON format with two keys: 
+Your output must be in JSON format with three keys: 
 - "category": The main category
+
 - "explanation": A brief explanation (2-3 sentences) of why this classification was chosen
 
-- Equivalence
 
-- Complementarity
-  
-- Independence
-  
+- Equivalence:
+  - Literal Equivalence:
+    - "Token-Token"
+    - "Type-Token"
+  - Figurative Equivalence:
+    - "Metonymy"
+    - "Metaphor"
+
+- Complementarity:
+  - Essential Complementarity:
+    - "Essential Exophora"
+    - "Essential Agent–Object"
+    - "Defining Apposition"
+  - Non-Essential Complementarity:
+    - "Non-Essential Exophora"
+    - "Non-Essential Agent–Object"
+    - "Adjunct"
+    - "Non-Defining Apposition"
+
+- Independence:
+  - "Contradiction"
+  - "Symbiosis"
+  - "Meta-Information"
+
 Now, based on these rules, analyze the following texts:
 
 Summary: "{summary_text}"
@@ -83,7 +105,7 @@ IMPORTANT: Return your answer as valid JSON only (without code fences or markdow
     response = client.models.generate_content(
         model="gemini-2.0-flash",
         contents=prompt
-        # temperature=0
+        
     )
     try:
         result  = response.text.strip()
